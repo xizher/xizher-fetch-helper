@@ -1,10 +1,11 @@
 export declare type IBody = BodyInit | Object;
-declare function createFetch(): {
-    setUrl(url: string): any;
-    setHeaders(headers: HeadersInit): any;
-    setBody(body: IBody, reset?: boolean): any;
-    setParams(params: Object): any;
+export interface ICreateFetch {
+    setUrl(url: string): ICreateFetch;
+    setBody(body: string, reset?: boolean): ICreateFetch;
+    setHeaders(headers: HeadersInit): ICreateFetch;
+    setParams(params: Object): ICreateFetch;
     mountGet(): Promise<Response>;
     mountPost(): Promise<Response>;
-};
+}
+declare function createFetch(): ICreateFetch;
 export default createFetch;
