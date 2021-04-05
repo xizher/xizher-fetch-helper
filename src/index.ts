@@ -29,15 +29,15 @@ function qs (params: Object) : string {
 function createFetch () : ICreateFetch {
   const store = new FetchStore()
   const ret = {
-    setUrl (url: string) {
+    setUrl (url: string) : ICreateFetch {
       store.url = url
       return ret
     },
-    setHeaders (headers: HeadersInit) {
+    setHeaders (headers: HeadersInit) : ICreateFetch {
       baseUtils.$extend(true, store.headers, headers)
       return ret
     },
-    setBody (body: IBody, reset = false) {
+    setBody (body: IBody, reset = false) : ICreateFetch {
       if (reset) {
         store.body = body
       } else {
@@ -45,11 +45,11 @@ function createFetch () : ICreateFetch {
       }
       return ret
     },
-    setParams (params: Object) {
+    setParams (params: Object) : ICreateFetch {
       baseUtils.$extend(true, store.params, params)
       return ret
     },
-    mountGet () {
+    mountGet () : Promise<Response> {
       const params = qs(store.params)
       let url = store.url
       if (params) {
@@ -60,7 +60,7 @@ function createFetch () : ICreateFetch {
         headers: store.headers,
       })
     },
-    mountPost () {
+    mountPost () : Promise<Response> {
       const params = qs(store.params)
       let url = store.url
       if (params) {
