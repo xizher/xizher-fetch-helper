@@ -3,6 +3,15 @@ import { baseUtils } from '@xizher/js-utils'
 
 export type IBody = BodyInit | Object
 
+export interface ICreateFetch {
+  setUrl (url: string) : ICreateFetch
+  setBody (body: string, reset?: boolean) : ICreateFetch
+  setHeaders (headers: HeadersInit) : ICreateFetch
+  setParams (params: Object) : ICreateFetch
+  mountGet () : Promise<Response>
+  mountPost () : Promise<Response>
+}
+
 class FetchStore {
   public url: string
   public headers: HeadersInit = {}
@@ -17,7 +26,7 @@ function qs (params: Object) : string {
     .join('&')
 }
 
-function createFetch () {
+function createFetch () : ICreateFetch {
   const store = new FetchStore()
   const ret = {
     setUrl (url: string) {
