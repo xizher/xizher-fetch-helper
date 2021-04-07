@@ -41,7 +41,7 @@ function createFetch() {
             const params = qs(store.params);
             let url = store.url;
             if (params) {
-                url = `${url}?${store.params}`;
+                url = `${url}?${params}`;
             }
             return fetch(url, {
                 method: 'GET',
@@ -52,7 +52,7 @@ function createFetch() {
             const params = qs(store.params);
             let url = store.url;
             if (params) {
-                url = `${url}?${store.params}`;
+                url = `${url}?${params}`;
             }
             return fetch(url, {
                 method: 'POST',
